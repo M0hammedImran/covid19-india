@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API_KEY } from './env.js'
-
+import Stat from './stat.js'
 function App() {
 
   let date = new Date().getDate();
@@ -50,7 +50,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {JSON.stringify(covidData)}
+      <Stat bengaluruData={covidData} />
     </div>
   );
 }
