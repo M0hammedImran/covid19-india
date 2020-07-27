@@ -13,6 +13,19 @@ function App() {
     isLoading: true,
   })
 
+  const [districtData, setDistrictData] = useState({
+    data: {},
+    district: '',
+  });
+
+  const handleDistrictChange = (district) => {
+    const data = covidData.districts;
+    const parsedData = data.filter(dist => {
+      return dist[district]
+    })
+    setDistrictData({ data: parsedData[0], district: district });
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,14 +61,30 @@ function App() {
     }
     fetchData();
   }, []);
+  let distValues = []
+  // console.log(districtData.data)
+  const changingView = () => {
+    if (districtData.district.length <= 1) return;
 
+    let { data, district } = districtData
+    let { active, meta, total } = data[district];
+    let lastUpdated = meta.tested['last_updated'];
+    let { confirmed, deceased, recovered } = total;
+
+    distValues = [confirmed, active, recovered, deceased, lastUpdated]
+    console.log(confirmed, active, recovered, deceased, lastUpdated)
+  }
+  changingView();
+
+  // const dummyData = [130000, 70000, 50000, 2000]
   return (
     <div className="App">
       {covidData.isLoading ? <img src={loading} alt="loading gif" /> :
         <>
-          <DistrictSearch data={covidData.districts} />
-          <Cards data={70000} />
-          <Chart data={[70000, 130000, 50000, 2000]} />
+          <h1>{districtData.district}</h1>
+          <DistrictSearch className={DistrictSearch} data={covidData.districts} handleDistrictChange={handleDistrictChange} />
+          <Cards className={Cards} data={distValues} />
+          <Chart className={Chart} data={distValues} />
         </>
 
       }
@@ -64,12 +93,3 @@ function App() {
 }
 
 export default App;
-
-// const data = [
-//   {
-//     "chikmagaluru": {
-//       active: 100,
-//       deceased: 100,
-//     }
-//   },
-// ]

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2'
 import styles from './Charts.module.css'
-
-const Chart = ({ data: [confirmed, active, recovered, deceased] }) => {
-  console.log(confirmed, active, recovered, deceased)
+import cx from 'classnames';
+const Chart = ({ className, data: [confirmed, active, recovered, deceased] }) => {
   const barChart = (
     <Bar
       data={{
@@ -24,7 +23,7 @@ const Chart = ({ data: [confirmed, active, recovered, deceased] }) => {
   )
 
   return (
-    <div className={styles.container}>
+    <div className={cx(className.name, styles.container)}>
       {barChart}
     </div>
   )

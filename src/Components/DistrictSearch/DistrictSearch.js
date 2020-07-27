@@ -1,22 +1,51 @@
-import React from 'react';
-import { NativeSelect, FormControl } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
-const Districts = ({ data }) => {
-  let districts = []
-  data.forEach(dist => districts.push(Object.keys(dist)[0]));
+const DistrictSearch = ({ className, data, handleDistrictChange }) => {
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const [districts, setDistricts] = useState([]);
+  // console.log(data);
+  let allDistricts = [];
+
+
+
+  useEffect(() => {
+    const fetchDistrict = async () => {
+      await data.forEach(dist => allDistricts.push(Object.keys(dist)[0]));
+      setDistricts(allDistricts);
+    };
+    fetchDistrict();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    handleDistrictChange(value);
+    setSelectedValue(value)
+  }
+
   return (
-    <div><FormControl>
-      <NativeSelect>
-        <option value=''>Karnataka</option>
-        {districts.map((district, index) =>
-          <option key={index} value={district}>
-            {district}
-          </option>
-        )}
-      </NativeSelect>
-    </FormControl>
+    <div className={className.name}>
+      <FormControl>
+        <InputLabel >Districts</InputLabel>
+        <Select value={selectedValue} onChange={handleChange}>
+          <MenuItem value="">
+            <em>Karnataka</em>
+          </MenuItem>
+          {districts.map((district, index) =>
+            <MenuItem key={index} value={district}>
+              {district}
+            </MenuItem>
+          )}
+        </Select>
+      </FormControl>
     </div>
   )
 }
 
-export default Districts;
+export default DistrictSearch;
+
