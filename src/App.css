@@ -9,14 +9,20 @@
   width: 100%;
 }
 
-.App {width:70%;
-  margin:0 auto;
+.App {
+  width: 70%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 40px 2fr 3fr 40px;
-  grid-template-rows: 10px 120px 2fr 10px;
+  grid-template-columns: 40px repeat(2fr) 40px;
+  grid-template-rows: 4em 120px 2fr 10px;
 }
 
-.DistrictSearch {
+#districtName {
+  grid-column: 2 / span 1;
+  text-align: center;
+}
+
+.district-search {
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
   display: flex;
@@ -25,11 +31,11 @@
   height: max-content;
   width: 100%;
 }
-.Cards {
+.cards {
   grid-row: 2 / span 2;
   grid-column: 3 / span 1;
 }
-.Chart {
+.chart {
   grid-row: 3 / span 1;
   grid-column: 2 / span 1;
 }
