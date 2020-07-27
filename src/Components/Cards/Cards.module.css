@@ -1,0 +1,30 @@
+.container {
+  width: 40%;
+}
+
+.card {
+  width: 400px;
+  margin: 2em !important;
+}
+
+.card-style {
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.active {
+  border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+}
+
+.confirmed {
+  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+
+.recovered {
+  border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+}
+
+.deceased {
+  border-bottom: 10px solid rgba(0, 0, 0, 0.5);
+}

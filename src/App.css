@@ -4,29 +4,26 @@
   box-sizing: border-box;
 }
 
-.App {
-  width: 100%;
+#root {
   height: 100vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
-.stat {
-  width: 60%;
-  height: 80vh;
-  margin: 0 auto;
-  padding: 1em;
-  text-align: left;
-  background-color: #aaa;
+.App {
+  display: grid;
+  grid-template-rows: minmax(1em, 1fr) 2fr 3fr minmax(1em, 1fr);
+  grid-template-columns: 1fr 2fr 3fr 1fr;
 }
-.stat h3 {
-  text-align: center;
-  font-size: 3em;
+
+DistrictSearch {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 1;
 }
-.stat .keys {
-  margin: 0 auto;
-  width: fit-content;
-  padding: 0.5em;
+Cards {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 2;
+}
+Charts {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
 }

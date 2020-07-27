@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50em;
+  /* margin: 0 10em; */
+  background: aquamarine;
+  height: 25em;
+}
