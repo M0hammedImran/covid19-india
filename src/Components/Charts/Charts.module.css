@@ -6,3 +6,22 @@
   align-items: center;
   background: aquamarine;
 }
+@media only screen and (min-width: 315px) and (max-width: 450px) {
+  .container {
+    all: initial;
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+  .container {
+    all: initial;
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1220px) {
+  .container {
+    all: initial;
+    width: 550px;
+  }
+}

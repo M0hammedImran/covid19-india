@@ -10,16 +10,35 @@
 }
 
 .App {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 40px repeat(2fr) 40px;
-  grid-template-rows: 4em 120px 2fr 10px;
+  grid-template-columns: 40px repeat(2fr) 5em;
+  grid-template-rows: 7em 120px 2fr 10px;
 }
 
+header {
+  margin-top: 1em;
+}
+header,
 #districtName {
-  grid-column: 2 / span 1;
+  grid-column: 1 / span 4;
   text-align: center;
+}
+
+.loading-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.footer {
+  grid-column: 1 / span 4;
+  grid-row: 4 / span 1;
+  text-align: center;
+  margin: 2em auto;
 }
 
 .district-search {
@@ -36,6 +55,54 @@
   grid-column: 3 / span 1;
 }
 .chart {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   grid-row: 3 / span 1;
   grid-column: 2 / span 1;
+}
+
+@media only screen and (min-width: 315px) and (max-width: 450px) {
+  #root {
+    overflow-x: hidden;
+  }
+  .App {
+    all: initial;
+    width: 100%;
+    background: #000000;
+  }
+  .footer {
+    margin: 2em auto;
+  }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+  #root {
+    overflow-x: hidden;
+  }
+  .App {
+    all: initial;
+    width: 100vw;
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  .footer {
+    margin: 2em auto;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1220px) {
+  .App {
+    /* width: 100%; */
+    all: initial;
+  }
+}
+
+@media only screen and (min-width: 1220px) and (max-width: 1360px) {
+  .App {
+    width: 100%;
+  }
 }

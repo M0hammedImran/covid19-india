@@ -8,10 +8,8 @@ const DistrictSearch = ({ className, data, handleDistrictChange }) => {
   const [selectedValue, setSelectedValue] = useState('');
 
   const [districts, setDistricts] = useState([]);
-  // console.log(data);
+
   let allDistricts = [];
-
-
 
   useEffect(() => {
     const fetchDistrict = async () => {
@@ -32,8 +30,8 @@ const DistrictSearch = ({ className, data, handleDistrictChange }) => {
     <div className={className.name}>
       <FormControl>
         <InputLabel >Districts</InputLabel>
-        <Select value={selectedValue} onChange={handleChange}>
-          <MenuItem value="">
+        <Select value={selectedValue || 'Karnataka'} onChange={handleChange}>
+          <MenuItem value="Karnataka">
             <em>Karnataka</em>
           </MenuItem>
           {districts.map((district, index) =>

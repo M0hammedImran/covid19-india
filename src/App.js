@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { API_KEY, STATE_WISE_API_KEY } from './env.js';
 import loading from './assets/loading.gif';
@@ -16,6 +16,8 @@ function App() {
     data: {},
     district: '',
   });
+  const distValues = useRef([]);
+  const karnatakaValues = useRef([]);
 
   const handleDistrictChange = (district) => {
     const data = covidData.districts;
@@ -54,39 +56,57 @@ function App() {
           districts.push(obj);
         });
 
+        let karnatakaData = dataV1.KA.total;
+        let { confirmed, deceased, recovered } = karnatakaData;
+        let totalActiveCases = active.reduce((a, b) => a + b, 0);
+        let lastUpdated = dataV1.KA.meta.last_updated.toString();
+        lastUpdated = lastUpdated.slice(0, 10).split('-').reverse().join('-');
+        karnatakaValues.current = [confirmed, totalActiveCases, recovered, deceased, lastUpdated]
+
         setCovidData({ isLoading: false, districts: districts });
 
       } catch (error) { console.log(error); }
     }
     fetchData();
   }, []);
-  let distValues = [];
 
   const changingView = () => {
-    if (districtData.district.length <= 1) return;
+    if (districtData.district.length <= 1 || districtData.district === 'Karnataka') {
+      distValues.current = karnatakaValues.current;
+    } else {
+      let { data, district } = districtData;
+      let { active, meta, total } = data[district];
+      let lastUpdated = meta.tested['last_updated'];
+      let { confirmed, deceased, recovered } = total;
 
-    let { data, district } = districtData
-    let { active, meta, total } = data[district];
-    let lastUpdated = meta.tested['last_updated'];
-    let { confirmed, deceased, recovered } = total;
-
-    distValues = [confirmed, active, recovered, deceased, lastUpdated]
+      distValues.current = [confirmed, active, recovered, deceased, lastUpdated]
+    }
   }
   changingView();
 
   return (
     <div className="App">
-      {covidData.isLoading ? <img src={loading} alt="loading gif" /> :
+
+      {covidData.isLoading ? <img className='loading-img' src={loading} alt="loading gif" /> :
         <>
-          <h1 id='districtName'>{districtData.district || "Select a Districts."}</h1>
+          <header>
+            <h1>Covid-19 Data</h1>
+            <h2 id='districtName'>{districtData.district || "Karnataka"}</h2>
+          </header>
+
           <div className='district-search'>
             <DistrictSearch className={DistrictSearch} data={covidData.districts} handleDistrictChange={handleDistrictChange} />
           </div>
-          <div className='cards'>
-            <Cards className={Cards} data={distValues} />
-          </div>
+
           <div className='chart'>
-            <Chart className={Chart} data={distValues} />
+            <Chart className={Chart} data={distValues.current} />
+          </div>
+
+          <div className='cards'>
+            <Cards className={Cards} data={distValues.current} />
+          </div>
+          <div className='footer'>
+            <footer>Author: Mohammed Imran</footer>
           </div>
         </>
       }

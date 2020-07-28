@@ -28,3 +28,14 @@
 .deceased {
   border-bottom: 10px solid rgba(0, 0, 0, 0.5);
 }
+
+@media only screen and (min-width: 315px) and (max-width: 350px) {
+  .card {
+    width: 250px;
+  }
+}
+@media only screen and (min-width: 350px) and (max-width: 450px) {
+  .card {
+    width: 300px;
+  }
+}
