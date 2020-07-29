@@ -16,6 +16,7 @@ function App() {
     data: {},
     district: '',
   });
+
   const distValues = useRef([]);
   const karnatakaValues = useRef([]);
 
@@ -86,7 +87,6 @@ function App() {
 
   return (
     <div className="App">
-
       {covidData.isLoading ? <img className='loading-img' src={loading} alt="loading gif" /> :
         <>
           <header>
