@@ -19,7 +19,6 @@ body {
   display: grid;
   grid-template-columns: 40px repeat(2fr) 5em;
   grid-template-rows: 7em 120px 2fr 10px;
-  background: #000;
 }
 
 header {
