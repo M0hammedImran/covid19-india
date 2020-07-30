@@ -9,6 +9,10 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 #root {
   height: 100vh;
   width: 100%;
@@ -40,14 +44,20 @@ header,
   transform: translate(-50%, -50%);
 }
 
-.footer {
+footer {
   /* grid-column: 1 / span 4;
   grid-row: 4 / span 1; */
   position: fixed;
   Width: 100%;
   bottom: 0;
+  height: 45px;
   text-align: center;
-  margin: 2em auto;
+  margin-top: 2em;
+  background-color: lawngreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
 .district-search {
@@ -84,9 +94,11 @@ header,
     background: #000000;
   }
 
-  .footer {
-    margin: 2em auto;
-  }
+}
+
+#github-logo {
+  margin: 1em;
+  width: 20px;
 }
 
 @media only screen and (min-width: 450px) and (max-width: 600px) {
@@ -104,9 +116,6 @@ header,
     flex-direction: column;
   }
 
-  .footer {
-    margin: 2em auto;
-  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1220px) {

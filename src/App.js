@@ -105,11 +105,6 @@ function App() {
           <div className='cards'>
             <Cards className={Cards} data={distValues.current} />
           </div>
-
-          <footer>
-            <p>Author: Mohammed Imran</p>
-          </footer>
-
         </>
       }
     </div>
