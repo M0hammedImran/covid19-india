@@ -105,6 +105,7 @@ function App() {
           <div className='cards'>
             <Cards className={Cards} data={distValues.current} />
           </div>
+          <div className="empty"></div>
         </>
       }
     </div>
